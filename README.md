@@ -13,30 +13,6 @@ Install the MediaPipe library:
 ```bash
 cd ~/my_rov_ws
 python -m pip install mediapipe
-
----
-
-## Build the Workspace
-
-```bash
-cd ~/my_rov_ws
-colcon build
-
----# My_ROV_WS Project Guide
-
-My_ROV_WS is a ROS 2 setup that demonstrates how to integrate MediaPipe with 
-camera, perception, and visualization nodes. Follow the steps below to install
-dependencies, build the workspace, and launch the application.
-
----
-
-## Install MediaPipe
-
-Install the MediaPipe library:
-
-```bash
-cd ~/my_rov_ws
-python -m pip install mediapipe
 ```
 
 ---
