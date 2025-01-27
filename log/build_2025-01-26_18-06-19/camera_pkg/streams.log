@@ -1,0 +1,4 @@
+[0.049s] Invoking command in '/home/user/my_rov_ws/build/camera_pkg': /usr/bin/cmake /home/user/my_rov_ws/src/camera_pkg -DCATKIN_INSTALL_INTO_PREFIX_ROOT=0 -DCMAKE_INSTALL_PREFIX=/home/user/my_rov_ws/install/camera_pkg
+[0.116s] [0mCMake Error: The source directory "/home/user/my_rov_ws/src/camera_pkg" does not appear to contain CMakeLists.txt.
+[0.116s] Specify --help for usage, or press the help button on the CMake GUI.[0m
+[0.127s] Invoked command in '/home/user/my_rov_ws/build/camera_pkg' returned '1': /usr/bin/cmake /home/user/my_rov_ws/src/camera_pkg -DCATKIN_INSTALL_INTO_PREFIX_ROOT=0 -DCMAKE_INSTALL_PREFIX=/home/user/my_rov_ws/install/camera_pkg

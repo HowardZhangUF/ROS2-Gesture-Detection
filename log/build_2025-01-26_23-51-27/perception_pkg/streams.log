@@ -1,0 +1,40 @@
+[3.626s] Invoking command in '/home/user/my_rov_ws/src/perception_pkg': PYTHONPATH=/home/user/my_rov_ws/build/perception_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/user/my_rov_ws/install/perception_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/perception_pkg build --build-base /home/user/my_rov_ws/build/perception_pkg/build install --record /home/user/my_rov_ws/build/perception_pkg/install.log --single-version-externally-managed install_data
+[5.031s] running egg_info
+[5.034s] creating ../../build/perception_pkg/perception_pkg.egg-info
+[5.034s] writing ../../build/perception_pkg/perception_pkg.egg-info/PKG-INFO
+[5.035s] writing dependency_links to ../../build/perception_pkg/perception_pkg.egg-info/dependency_links.txt
+[5.036s] writing entry points to ../../build/perception_pkg/perception_pkg.egg-info/entry_points.txt
+[5.036s] writing requirements to ../../build/perception_pkg/perception_pkg.egg-info/requires.txt
+[5.037s] writing top-level names to ../../build/perception_pkg/perception_pkg.egg-info/top_level.txt
+[5.037s] writing manifest file '../../build/perception_pkg/perception_pkg.egg-info/SOURCES.txt'
+[5.044s] reading manifest file '../../build/perception_pkg/perception_pkg.egg-info/SOURCES.txt'
+[5.047s] writing manifest file '../../build/perception_pkg/perception_pkg.egg-info/SOURCES.txt'
+[5.048s] running build
+[5.048s] running build_py
+[5.049s] creating /home/user/my_rov_ws/build/perception_pkg/build
+[5.049s] creating /home/user/my_rov_ws/build/perception_pkg/build/lib
+[5.050s] creating /home/user/my_rov_ws/build/perception_pkg/build/lib/perception_pkg
+[5.050s] copying perception_pkg/mediapipe_rov.py -> /home/user/my_rov_ws/build/perception_pkg/build/lib/perception_pkg
+[5.053s] copying perception_pkg/__init__.py -> /home/user/my_rov_ws/build/perception_pkg/build/lib/perception_pkg
+[5.054s] copying perception_pkg/perception_node.py -> /home/user/my_rov_ws/build/perception_pkg/build/lib/perception_pkg
+[5.055s] running install
+[5.056s] running install_lib
+[5.060s] creating /home/user/my_rov_ws/install/perception_pkg/lib/python3.10/site-packages/perception_pkg
+[5.061s] copying /home/user/my_rov_ws/build/perception_pkg/build/lib/perception_pkg/mediapipe_rov.py -> /home/user/my_rov_ws/install/perception_pkg/lib/python3.10/site-packages/perception_pkg
+[5.061s] copying /home/user/my_rov_ws/build/perception_pkg/build/lib/perception_pkg/__init__.py -> /home/user/my_rov_ws/install/perception_pkg/lib/python3.10/site-packages/perception_pkg
+[5.062s] copying /home/user/my_rov_ws/build/perception_pkg/build/lib/perception_pkg/perception_node.py -> /home/user/my_rov_ws/install/perception_pkg/lib/python3.10/site-packages/perception_pkg
+[5.063s] byte-compiling /home/user/my_rov_ws/install/perception_pkg/lib/python3.10/site-packages/perception_pkg/mediapipe_rov.py to mediapipe_rov.cpython-310.pyc
+[5.078s] byte-compiling /home/user/my_rov_ws/install/perception_pkg/lib/python3.10/site-packages/perception_pkg/__init__.py to __init__.cpython-310.pyc
+[5.079s] byte-compiling /home/user/my_rov_ws/install/perception_pkg/lib/python3.10/site-packages/perception_pkg/perception_node.py to perception_node.cpython-310.pyc
+[5.081s] running install_data
+[5.082s] creating /home/user/my_rov_ws/install/perception_pkg/share/ament_index
+[5.082s] creating /home/user/my_rov_ws/install/perception_pkg/share/ament_index/resource_index
+[5.083s] creating /home/user/my_rov_ws/install/perception_pkg/share/ament_index/resource_index/packages
+[5.083s] copying resource/perception_pkg -> /home/user/my_rov_ws/install/perception_pkg/share/ament_index/resource_index/packages
+[5.083s] copying package.xml -> /home/user/my_rov_ws/install/perception_pkg/share/perception_pkg
+[5.084s] running install_egg_info
+[5.090s] Copying ../../build/perception_pkg/perception_pkg.egg-info to /home/user/my_rov_ws/install/perception_pkg/lib/python3.10/site-packages/perception_pkg-0.1.0-py3.10.egg-info
+[5.096s] running install_scripts
+[5.185s] Installing perception_node script to /home/user/my_rov_ws/install/perception_pkg/lib/perception_pkg
+[5.186s] writing list of installed files to '/home/user/my_rov_ws/build/perception_pkg/install.log'
+[5.267s] Invoked command in '/home/user/my_rov_ws/src/perception_pkg' returned '0': PYTHONPATH=/home/user/my_rov_ws/build/perception_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/user/my_rov_ws/install/perception_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/perception_pkg build --build-base /home/user/my_rov_ws/build/perception_pkg/build install --record /home/user/my_rov_ws/build/perception_pkg/install.log --single-version-externally-managed install_data

@@ -1,0 +1,3 @@
+[console_scripts]
+perception_node = perception_pkg.perception_node:main
+

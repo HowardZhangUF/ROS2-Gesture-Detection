@@ -1,0 +1,24 @@
+[3.802s] Invoking command in '/home/user/my_rov_ws/src/camera_pkg': PYTHONPATH=/home/user/my_rov_ws/build/camera_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/user/my_rov_ws/install/camera_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/camera_pkg build --build-base /home/user/my_rov_ws/build/camera_pkg/build install --record /home/user/my_rov_ws/build/camera_pkg/install.log --single-version-externally-managed install_data
+[5.173s] running egg_info
+[5.178s] writing ../../build/camera_pkg/camera_pkg.egg-info/PKG-INFO
+[5.179s] writing dependency_links to ../../build/camera_pkg/camera_pkg.egg-info/dependency_links.txt
+[5.180s] writing entry points to ../../build/camera_pkg/camera_pkg.egg-info/entry_points.txt
+[5.180s] writing requirements to ../../build/camera_pkg/camera_pkg.egg-info/requires.txt
+[5.181s] writing top-level names to ../../build/camera_pkg/camera_pkg.egg-info/top_level.txt
+[5.190s] reading manifest file '../../build/camera_pkg/camera_pkg.egg-info/SOURCES.txt'
+[5.195s] writing manifest file '../../build/camera_pkg/camera_pkg.egg-info/SOURCES.txt'
+[5.195s] running build
+[5.196s] running build_py
+[5.197s] running install
+[5.199s] running install_lib
+[5.205s] running install_data
+[5.206s] copying package.xml -> /home/user/my_rov_ws/install/camera_pkg/share/camera_pkg
+[5.206s] creating /home/user/my_rov_ws/install/camera_pkg/share/camera_pkg/launch
+[5.207s] copying launch/camera_perception_viz.launch.py -> /home/user/my_rov_ws/install/camera_pkg/share/camera_pkg/launch
+[5.207s] running install_egg_info
+[5.214s] removing '/home/user/my_rov_ws/install/camera_pkg/lib/python3.10/site-packages/camera_pkg-0.1.0-py3.10.egg-info' (and everything under it)
+[5.215s] Copying ../../build/camera_pkg/camera_pkg.egg-info to /home/user/my_rov_ws/install/camera_pkg/lib/python3.10/site-packages/camera_pkg-0.1.0-py3.10.egg-info
+[5.219s] running install_scripts
+[5.302s] Installing camera_node script to /home/user/my_rov_ws/install/camera_pkg/lib/camera_pkg
+[5.303s] writing list of installed files to '/home/user/my_rov_ws/build/camera_pkg/install.log'
+[5.383s] Invoked command in '/home/user/my_rov_ws/src/camera_pkg' returned '0': PYTHONPATH=/home/user/my_rov_ws/build/camera_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/user/my_rov_ws/install/camera_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/camera_pkg build --build-base /home/user/my_rov_ws/build/camera_pkg/build install --record /home/user/my_rov_ws/build/camera_pkg/install.log --single-version-externally-managed install_data

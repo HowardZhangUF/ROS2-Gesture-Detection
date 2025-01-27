@@ -1,0 +1,3 @@
+[console_scripts]
+visualization_node = visualization_pkg.visualization_node:main
+

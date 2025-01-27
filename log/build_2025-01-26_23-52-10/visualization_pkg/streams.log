@@ -1,0 +1,37 @@
+[3.591s] Invoking command in '/home/user/my_rov_ws/src/visualization_pkg': PYTHONPATH=/home/user/my_rov_ws/build/visualization_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/user/my_rov_ws/install/visualization_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/visualization_pkg build --build-base /home/user/my_rov_ws/build/visualization_pkg/build install --record /home/user/my_rov_ws/build/visualization_pkg/install.log --single-version-externally-managed install_data
+[4.992s] running egg_info
+[4.995s] creating ../../build/visualization_pkg/visualization_pkg.egg-info
+[4.995s] writing ../../build/visualization_pkg/visualization_pkg.egg-info/PKG-INFO
+[4.996s] writing dependency_links to ../../build/visualization_pkg/visualization_pkg.egg-info/dependency_links.txt
+[4.997s] writing entry points to ../../build/visualization_pkg/visualization_pkg.egg-info/entry_points.txt
+[4.998s] writing requirements to ../../build/visualization_pkg/visualization_pkg.egg-info/requires.txt
+[4.999s] writing top-level names to ../../build/visualization_pkg/visualization_pkg.egg-info/top_level.txt
+[4.999s] writing manifest file '../../build/visualization_pkg/visualization_pkg.egg-info/SOURCES.txt'
+[5.006s] reading manifest file '../../build/visualization_pkg/visualization_pkg.egg-info/SOURCES.txt'
+[5.009s] writing manifest file '../../build/visualization_pkg/visualization_pkg.egg-info/SOURCES.txt'
+[5.010s] running build
+[5.010s] running build_py
+[5.011s] creating /home/user/my_rov_ws/build/visualization_pkg/build
+[5.011s] creating /home/user/my_rov_ws/build/visualization_pkg/build/lib
+[5.012s] creating /home/user/my_rov_ws/build/visualization_pkg/build/lib/visualization_pkg
+[5.012s] copying visualization_pkg/visualization_node.py -> /home/user/my_rov_ws/build/visualization_pkg/build/lib/visualization_pkg
+[5.015s] copying visualization_pkg/__init__.py -> /home/user/my_rov_ws/build/visualization_pkg/build/lib/visualization_pkg
+[5.016s] running install
+[5.017s] running install_lib
+[5.020s] creating /home/user/my_rov_ws/install/visualization_pkg/lib/python3.10/site-packages/visualization_pkg
+[5.021s] copying /home/user/my_rov_ws/build/visualization_pkg/build/lib/visualization_pkg/visualization_node.py -> /home/user/my_rov_ws/install/visualization_pkg/lib/python3.10/site-packages/visualization_pkg
+[5.021s] copying /home/user/my_rov_ws/build/visualization_pkg/build/lib/visualization_pkg/__init__.py -> /home/user/my_rov_ws/install/visualization_pkg/lib/python3.10/site-packages/visualization_pkg
+[5.023s] byte-compiling /home/user/my_rov_ws/install/visualization_pkg/lib/python3.10/site-packages/visualization_pkg/visualization_node.py to visualization_node.cpython-310.pyc
+[5.025s] byte-compiling /home/user/my_rov_ws/install/visualization_pkg/lib/python3.10/site-packages/visualization_pkg/__init__.py to __init__.cpython-310.pyc
+[5.026s] running install_data
+[5.027s] creating /home/user/my_rov_ws/install/visualization_pkg/share/ament_index
+[5.027s] creating /home/user/my_rov_ws/install/visualization_pkg/share/ament_index/resource_index
+[5.028s] creating /home/user/my_rov_ws/install/visualization_pkg/share/ament_index/resource_index/packages
+[5.028s] copying resource/visualization_pkg -> /home/user/my_rov_ws/install/visualization_pkg/share/ament_index/resource_index/packages
+[5.028s] copying package.xml -> /home/user/my_rov_ws/install/visualization_pkg/share/visualization_pkg
+[5.028s] running install_egg_info
+[5.036s] Copying ../../build/visualization_pkg/visualization_pkg.egg-info to /home/user/my_rov_ws/install/visualization_pkg/lib/python3.10/site-packages/visualization_pkg-0.1.0-py3.10.egg-info
+[5.040s] running install_scripts
+[5.137s] Installing visualization_node script to /home/user/my_rov_ws/install/visualization_pkg/lib/visualization_pkg
+[5.138s] writing list of installed files to '/home/user/my_rov_ws/build/visualization_pkg/install.log'
+[5.222s] Invoked command in '/home/user/my_rov_ws/src/visualization_pkg' returned '0': PYTHONPATH=/home/user/my_rov_ws/build/visualization_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/user/my_rov_ws/install/visualization_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/visualization_pkg build --build-base /home/user/my_rov_ws/build/visualization_pkg/build install --record /home/user/my_rov_ws/build/visualization_pkg/install.log --single-version-externally-managed install_data

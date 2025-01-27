@@ -1,0 +1,22 @@
+running egg_info
+writing ../../build/camera_pkg/camera_pkg.egg-info/PKG-INFO
+writing dependency_links to ../../build/camera_pkg/camera_pkg.egg-info/dependency_links.txt
+writing entry points to ../../build/camera_pkg/camera_pkg.egg-info/entry_points.txt
+writing requirements to ../../build/camera_pkg/camera_pkg.egg-info/requires.txt
+writing top-level names to ../../build/camera_pkg/camera_pkg.egg-info/top_level.txt
+reading manifest file '../../build/camera_pkg/camera_pkg.egg-info/SOURCES.txt'
+writing manifest file '../../build/camera_pkg/camera_pkg.egg-info/SOURCES.txt'
+running build
+running build_py
+running install
+running install_lib
+running install_data
+copying package.xml -> /home/user/my_rov_ws/install/camera_pkg/share/camera_pkg
+creating /home/user/my_rov_ws/install/camera_pkg/share/camera_pkg/launch
+copying launch/camera_perception_viz.launch.py -> /home/user/my_rov_ws/install/camera_pkg/share/camera_pkg/launch
+running install_egg_info
+removing '/home/user/my_rov_ws/install/camera_pkg/lib/python3.10/site-packages/camera_pkg-0.1.0-py3.10.egg-info' (and everything under it)
+Copying ../../build/camera_pkg/camera_pkg.egg-info to /home/user/my_rov_ws/install/camera_pkg/lib/python3.10/site-packages/camera_pkg-0.1.0-py3.10.egg-info
+running install_scripts
+Installing camera_node script to /home/user/my_rov_ws/install/camera_pkg/lib/camera_pkg
+writing list of installed files to '/home/user/my_rov_ws/build/camera_pkg/install.log'

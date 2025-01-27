@@ -1,0 +1,2 @@
+Invoking command in '/home/user/my_rov_ws/build/camera_pkg': /usr/bin/cmake /home/user/my_rov_ws/src/camera_pkg -DCATKIN_INSTALL_INTO_PREFIX_ROOT=0 -DCMAKE_INSTALL_PREFIX=/home/user/my_rov_ws/install/camera_pkg
+Invoked command in '/home/user/my_rov_ws/build/camera_pkg' returned '1': /usr/bin/cmake /home/user/my_rov_ws/src/camera_pkg -DCATKIN_INSTALL_INTO_PREFIX_ROOT=0 -DCMAKE_INSTALL_PREFIX=/home/user/my_rov_ws/install/camera_pkg

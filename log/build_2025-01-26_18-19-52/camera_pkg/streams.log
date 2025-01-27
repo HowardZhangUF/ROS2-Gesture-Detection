@@ -1,0 +1,37 @@
+[3.629s] Invoking command in '/home/user/my_rov_ws/src/camera_pkg': PYTHONPATH=/home/user/my_rov_ws/build/camera_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/user/my_rov_ws/install/camera_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/camera_pkg build --build-base /home/user/my_rov_ws/build/camera_pkg/build install --record /home/user/my_rov_ws/build/camera_pkg/install.log --single-version-externally-managed install_data
+[5.083s] running egg_info
+[5.086s] creating ../../build/camera_pkg/camera_pkg.egg-info
+[5.092s] writing ../../build/camera_pkg/camera_pkg.egg-info/PKG-INFO
+[5.093s] writing dependency_links to ../../build/camera_pkg/camera_pkg.egg-info/dependency_links.txt
+[5.095s] writing entry points to ../../build/camera_pkg/camera_pkg.egg-info/entry_points.txt
+[5.095s] writing requirements to ../../build/camera_pkg/camera_pkg.egg-info/requires.txt
+[5.095s] writing top-level names to ../../build/camera_pkg/camera_pkg.egg-info/top_level.txt
+[5.096s] writing manifest file '../../build/camera_pkg/camera_pkg.egg-info/SOURCES.txt'
+[5.102s] reading manifest file '../../build/camera_pkg/camera_pkg.egg-info/SOURCES.txt'
+[5.105s] writing manifest file '../../build/camera_pkg/camera_pkg.egg-info/SOURCES.txt'
+[5.106s] running build
+[5.107s] running build_py
+[5.107s] creating /home/user/my_rov_ws/build/camera_pkg/build
+[5.107s] creating /home/user/my_rov_ws/build/camera_pkg/build/lib
+[5.107s] creating /home/user/my_rov_ws/build/camera_pkg/build/lib/camera_pkg
+[5.108s] copying camera_pkg/__init__.py -> /home/user/my_rov_ws/build/camera_pkg/build/lib/camera_pkg
+[5.108s] copying camera_pkg/camera_node.py -> /home/user/my_rov_ws/build/camera_pkg/build/lib/camera_pkg
+[5.109s] running install
+[5.110s] running install_lib
+[5.113s] creating /home/user/my_rov_ws/install/camera_pkg/lib/python3.10/site-packages/camera_pkg
+[5.114s] copying /home/user/my_rov_ws/build/camera_pkg/build/lib/camera_pkg/__init__.py -> /home/user/my_rov_ws/install/camera_pkg/lib/python3.10/site-packages/camera_pkg
+[5.114s] copying /home/user/my_rov_ws/build/camera_pkg/build/lib/camera_pkg/camera_node.py -> /home/user/my_rov_ws/install/camera_pkg/lib/python3.10/site-packages/camera_pkg
+[5.117s] byte-compiling /home/user/my_rov_ws/install/camera_pkg/lib/python3.10/site-packages/camera_pkg/__init__.py to __init__.cpython-310.pyc
+[5.117s] byte-compiling /home/user/my_rov_ws/install/camera_pkg/lib/python3.10/site-packages/camera_pkg/camera_node.py to camera_node.cpython-310.pyc
+[5.121s] running install_data
+[5.122s] creating /home/user/my_rov_ws/install/camera_pkg/share/ament_index
+[5.122s] creating /home/user/my_rov_ws/install/camera_pkg/share/ament_index/resource_index
+[5.122s] creating /home/user/my_rov_ws/install/camera_pkg/share/ament_index/resource_index/packages
+[5.123s] copying resource/camera_pkg -> /home/user/my_rov_ws/install/camera_pkg/share/ament_index/resource_index/packages
+[5.124s] copying package.xml -> /home/user/my_rov_ws/install/camera_pkg/share/camera_pkg
+[5.124s] running install_egg_info
+[5.131s] Copying ../../build/camera_pkg/camera_pkg.egg-info to /home/user/my_rov_ws/install/camera_pkg/lib/python3.10/site-packages/camera_pkg-0.1.0-py3.10.egg-info
+[5.136s] running install_scripts
+[5.222s] Installing camera_node script to /home/user/my_rov_ws/install/camera_pkg/lib/camera_pkg
+[5.223s] writing list of installed files to '/home/user/my_rov_ws/build/camera_pkg/install.log'
+[5.306s] Invoked command in '/home/user/my_rov_ws/src/camera_pkg' returned '0': PYTHONPATH=/home/user/my_rov_ws/build/camera_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/user/my_rov_ws/install/camera_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/camera_pkg build --build-base /home/user/my_rov_ws/build/camera_pkg/build install --record /home/user/my_rov_ws/build/camera_pkg/install.log --single-version-externally-managed install_data

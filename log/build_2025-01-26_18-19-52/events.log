@@ -1,0 +1,97 @@
+[0.000000] (-) TimerEvent: {}
+[0.000661] (-) JobUnselected: {'identifier': 'perception_pkg'}
+[0.000787] (-) JobUnselected: {'identifier': 'visualization_pkg'}
+[0.000879] (camera_pkg) JobQueued: {'identifier': 'camera_pkg', 'dependencies': OrderedDict()}
+[0.000977] (camera_pkg) JobStarted: {'identifier': 'camera_pkg'}
+[0.096959] (-) TimerEvent: {}
+[0.197569] (-) TimerEvent: {}
+[0.298151] (-) TimerEvent: {}
+[0.399033] (-) TimerEvent: {}
+[0.499784] (-) TimerEvent: {}
+[0.600527] (-) TimerEvent: {}
+[0.701158] (-) TimerEvent: {}
+[0.801729] (-) TimerEvent: {}
+[0.902452] (-) TimerEvent: {}
+[1.003014] (-) TimerEvent: {}
+[1.103594] (-) TimerEvent: {}
+[1.204139] (-) TimerEvent: {}
+[1.304714] (-) TimerEvent: {}
+[1.405220] (-) TimerEvent: {}
+[1.505903] (-) TimerEvent: {}
+[1.606465] (-) TimerEvent: {}
+[1.707053] (-) TimerEvent: {}
+[1.807589] (-) TimerEvent: {}
+[1.908134] (-) TimerEvent: {}
+[2.008730] (-) TimerEvent: {}
+[2.109291] (-) TimerEvent: {}
+[2.209892] (-) TimerEvent: {}
+[2.310392] (-) TimerEvent: {}
+[2.410936] (-) TimerEvent: {}
+[2.511464] (-) TimerEvent: {}
+[2.612027] (-) TimerEvent: {}
+[2.712600] (-) TimerEvent: {}
+[2.813128] (-) TimerEvent: {}
+[2.913646] (-) TimerEvent: {}
+[3.014245] (-) TimerEvent: {}
+[3.114779] (-) TimerEvent: {}
+[3.215302] (-) TimerEvent: {}
+[3.315895] (-) TimerEvent: {}
+[3.416527] (-) TimerEvent: {}
+[3.517188] (-) TimerEvent: {}
+[3.617800] (-) TimerEvent: {}
+[3.624605] (camera_pkg) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../build/camera_pkg', 'build', '--build-base', '/home/user/my_rov_ws/build/camera_pkg/build', 'install', '--record', '/home/user/my_rov_ws/build/camera_pkg/install.log', '--single-version-externally-managed', 'install_data'], 'cwd': '/home/user/my_rov_ws/src/camera_pkg', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'user', 'FONTCONFIG_PATH': '/etc/fonts', 'XDG_SESSION_TYPE': 'x11', 'GIT_ASKPASS': '/snap/code/180/usr/share/code/resources/app/extensions/git/dist/askpass.sh', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib', 'HOME': '/home/user', 'CHROME_DESKTOP': 'code.desktop', 'TERM_PROGRAM_VERSION': '1.96.3', 'DESKTOP_SESSION': 'ubuntu-xorg', 'GIO_LAUNCHED_DESKTOP_FILE': '/var/lib/snapd/desktop/applications/code_code.desktop', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'VSCODE_GIT_ASKPASS_MAIN': '/snap/code/180/usr/share/code/resources/app/extensions/git/dist/askpass-main.js', 'VSCODE_GIT_ASKPASS_NODE': '/snap/code/180/usr/share/code/code', 'MANAGERPID': '2171', 'DBUS_STARTER_BUS_TYPE': 'session', 'SYSTEMD_EXEC_PID': '2495', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus,guid=5acf905dbc21dbbce17a2d7367885f86', 'COLORTERM': 'truecolor', 'GIO_LAUNCHED_DESKTOP_FILE_PID': '306561', 'ROS_DISTRO': 'humble', 'GTK_IM_MODULE': 'ibus', 'LOGNAME': 'user', 'JOURNAL_STREAM': '8:14672', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_CONFIG_DIRS_VSCODE_SNAP_ORIG': '/etc/xdg/xdg-ubuntu-xorg:/etc/xdg', 'XDG_SESSION_CLASS': 'user', 'XDG_DATA_DIRS_VSCODE_SNAP_ORIG': '/usr/share/ubuntu-xorg:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'USERNAME': 'user', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'ROS_LOCALHOST_ONLY': '0', 'WINDOWPATH': '2', 'PATH': '/opt/ros/humble/bin:/opt/gcc-arm-none-eabi-9-2020-q2-update/bin:/home/user/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/user/.dotnet/tools:/home/user/.local/bin', 'SESSION_MANAGER': 'local/user-GL752VW:@/tmp/.ICE-unix/2495,unix/user-GL752VW:/tmp/.ICE-unix/2495', 'INVOCATION_ID': 'ac9e4567dca64546ac8df4af6c9383bf', 'XDG_MENU_PREFIX': 'gnome-', 'BAMF_DESKTOP_FILE_HINT': '/var/lib/snapd/desktop/applications/code_code.desktop', 'XDG_RUNTIME_DIR': '/run/user/1000', 'DISPLAY': ':0', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'Unity', 'DOTNET_BUNDLE_EXTRACT_BASE_DIR': '/home/user/.cache/dotnet_bundle_extract', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu-xorg', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'VSCODE_GIT_IPC_HANDLE': '/run/user/1000/vscode-git-c87ac95137.sock', 'TERM_PROGRAM': 'vscode', 'SSH_AGENT_LAUNCHER': 'gnome-keyring', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'AMENT_PREFIX_PATH': '/opt/ros/humble', 'ORIGINAL_XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'SHELL': '/bin/bash', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu-xorg', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'FONTCONFIG_FILE': '/etc/fonts/fonts.conf', 'GPG_AGENT_INFO': '/run/user/1000/gnupg/S.gpg-agent:0:1', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/user/my_rov_ws/build/camera_pkg', 'LC_ALL': 'en_US.UTF-8', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu-xorg:/etc/xdg', 'DBUS_STARTER_ADDRESS': 'unix:path=/run/user/1000/bus,guid=5acf905dbc21dbbce17a2d7367885f86', 'XDG_DATA_DIRS': '/usr/share/ubuntu-xorg:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/user/my_rov_ws/build/camera_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/user/my_rov_ws/install/camera_pkg/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'COLCON': '1'}, 'shell': False}
+[3.717982] (-) TimerEvent: {}
+[3.818558] (-) TimerEvent: {}
+[3.919147] (-) TimerEvent: {}
+[4.019787] (-) TimerEvent: {}
+[4.120416] (-) TimerEvent: {}
+[4.221024] (-) TimerEvent: {}
+[4.321601] (-) TimerEvent: {}
+[4.422146] (-) TimerEvent: {}
+[4.522672] (-) TimerEvent: {}
+[4.623206] (-) TimerEvent: {}
+[4.723827] (-) TimerEvent: {}
+[4.824724] (-) TimerEvent: {}
+[4.925274] (-) TimerEvent: {}
+[5.025828] (-) TimerEvent: {}
+[5.083853] (camera_pkg) StdoutLine: {'line': b'running egg_info\n'}
+[5.086511] (camera_pkg) StdoutLine: {'line': b'creating ../../build/camera_pkg/camera_pkg.egg-info\n'}
+[5.092907] (camera_pkg) StdoutLine: {'line': b'writing ../../build/camera_pkg/camera_pkg.egg-info/PKG-INFO\n'}
+[5.093753] (camera_pkg) StdoutLine: {'line': b'writing dependency_links to ../../build/camera_pkg/camera_pkg.egg-info/dependency_links.txt\n'}
+[5.095176] (camera_pkg) StdoutLine: {'line': b'writing entry points to ../../build/camera_pkg/camera_pkg.egg-info/entry_points.txt\n'}
+[5.095925] (camera_pkg) StdoutLine: {'line': b'writing requirements to ../../build/camera_pkg/camera_pkg.egg-info/requires.txt\n'}
+[5.096286] (camera_pkg) StdoutLine: {'line': b'writing top-level names to ../../build/camera_pkg/camera_pkg.egg-info/top_level.txt\n'}
+[5.096830] (camera_pkg) StdoutLine: {'line': b"writing manifest file '../../build/camera_pkg/camera_pkg.egg-info/SOURCES.txt'\n"}
+[5.103169] (camera_pkg) StdoutLine: {'line': b"reading manifest file '../../build/camera_pkg/camera_pkg.egg-info/SOURCES.txt'\n"}
+[5.105781] (camera_pkg) StdoutLine: {'line': b"writing manifest file '../../build/camera_pkg/camera_pkg.egg-info/SOURCES.txt'\n"}
+[5.106417] (camera_pkg) StdoutLine: {'line': b'running build\n'}
+[5.107185] (camera_pkg) StdoutLine: {'line': b'running build_py\n'}
+[5.107672] (camera_pkg) StdoutLine: {'line': b'creating /home/user/my_rov_ws/build/camera_pkg/build\n'}
+[5.107965] (camera_pkg) StdoutLine: {'line': b'creating /home/user/my_rov_ws/build/camera_pkg/build/lib\n'}
+[5.108213] (camera_pkg) StdoutLine: {'line': b'creating /home/user/my_rov_ws/build/camera_pkg/build/lib/camera_pkg\n'}
+[5.108456] (camera_pkg) StdoutLine: {'line': b'copying camera_pkg/__init__.py -> /home/user/my_rov_ws/build/camera_pkg/build/lib/camera_pkg\n'}
+[5.109173] (camera_pkg) StdoutLine: {'line': b'copying camera_pkg/camera_node.py -> /home/user/my_rov_ws/build/camera_pkg/build/lib/camera_pkg\n'}
+[5.109628] (camera_pkg) StdoutLine: {'line': b'running install\n'}
+[5.110919] (camera_pkg) StdoutLine: {'line': b'running install_lib\n'}
+[5.113867] (camera_pkg) StdoutLine: {'line': b'creating /home/user/my_rov_ws/install/camera_pkg/lib/python3.10/site-packages/camera_pkg\n'}
+[5.114454] (camera_pkg) StdoutLine: {'line': b'copying /home/user/my_rov_ws/build/camera_pkg/build/lib/camera_pkg/__init__.py -> /home/user/my_rov_ws/install/camera_pkg/lib/python3.10/site-packages/camera_pkg\n'}
+[5.115071] (camera_pkg) StdoutLine: {'line': b'copying /home/user/my_rov_ws/build/camera_pkg/build/lib/camera_pkg/camera_node.py -> /home/user/my_rov_ws/install/camera_pkg/lib/python3.10/site-packages/camera_pkg\n'}
+[5.117311] (camera_pkg) StdoutLine: {'line': b'byte-compiling /home/user/my_rov_ws/install/camera_pkg/lib/python3.10/site-packages/camera_pkg/__init__.py to __init__.cpython-310.pyc\n'}
+[5.118229] (camera_pkg) StdoutLine: {'line': b'byte-compiling /home/user/my_rov_ws/install/camera_pkg/lib/python3.10/site-packages/camera_pkg/camera_node.py to camera_node.cpython-310.pyc\n'}
+[5.121535] (camera_pkg) StdoutLine: {'line': b'running install_data\n'}
+[5.122162] (camera_pkg) StdoutLine: {'line': b'creating /home/user/my_rov_ws/install/camera_pkg/share/ament_index\n'}
+[5.122715] (camera_pkg) StdoutLine: {'line': b'creating /home/user/my_rov_ws/install/camera_pkg/share/ament_index/resource_index\n'}
+[5.123003] (camera_pkg) StdoutLine: {'line': b'creating /home/user/my_rov_ws/install/camera_pkg/share/ament_index/resource_index/packages\n'}
+[5.123519] (camera_pkg) StdoutLine: {'line': b'copying resource/camera_pkg -> /home/user/my_rov_ws/install/camera_pkg/share/ament_index/resource_index/packages\n'}
+[5.124144] (camera_pkg) StdoutLine: {'line': b'copying package.xml -> /home/user/my_rov_ws/install/camera_pkg/share/camera_pkg\n'}
+[5.124639] (camera_pkg) StdoutLine: {'line': b'running install_egg_info\n'}
+[5.125924] (-) TimerEvent: {}
+[5.132003] (camera_pkg) StdoutLine: {'line': b'Copying ../../build/camera_pkg/camera_pkg.egg-info to /home/user/my_rov_ws/install/camera_pkg/lib/python3.10/site-packages/camera_pkg-0.1.0-py3.10.egg-info\n'}
+[5.136818] (camera_pkg) StdoutLine: {'line': b'running install_scripts\n'}
+[5.222206] (camera_pkg) StdoutLine: {'line': b'Installing camera_node script to /home/user/my_rov_ws/install/camera_pkg/lib/camera_pkg\n'}
+[5.223400] (camera_pkg) StdoutLine: {'line': b"writing list of installed files to '/home/user/my_rov_ws/build/camera_pkg/install.log'\n"}
+[5.226097] (-) TimerEvent: {}
+[5.305989] (camera_pkg) CommandEnded: {'returncode': 0}
+[5.326746] (-) TimerEvent: {}
+[5.347132] (camera_pkg) JobEnded: {'identifier': 'camera_pkg', 'rc': 0}
+[5.350583] (-) EventReactorShutdown: {}
