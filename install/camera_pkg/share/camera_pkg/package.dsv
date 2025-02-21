@@ -1,3 +1,6 @@
 source;share/camera_pkg/hook/pythonpath.ps1
 source;share/camera_pkg/hook/pythonpath.dsv
 source;share/camera_pkg/hook/pythonpath.sh
+source;../../build/camera_pkg/share/camera_pkg/hook/pythonpath_develop.ps1
+source;../../build/camera_pkg/share/camera_pkg/hook/pythonpath_develop.dsv
+source;../../build/camera_pkg/share/camera_pkg/hook/pythonpath_develop.sh

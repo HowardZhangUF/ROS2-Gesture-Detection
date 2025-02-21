@@ -1,0 +1,23 @@
+[0.682s] Invoking command in '/home/bakerherrin/ROS2-Gesture-Detection/src/perception_pkg': CONDA_PROMPT_MODIFIER=(base) PYTHONPATH=/home/bakerherrin/ROS2-Gesture-Detection/build/perception_pkg/prefix_override:/home/bakerherrin/ROS2-Gesture-Detection/install/perception_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/perception_pkg build --build-base /home/bakerherrin/ROS2-Gesture-Detection/build/perception_pkg/build install --record /home/bakerherrin/ROS2-Gesture-Detection/build/perception_pkg/install.log --single-version-externally-managed
+[0.809s] running egg_info
+[0.809s] writing ../../build/perception_pkg/perception_pkg.egg-info/PKG-INFO
+[0.809s] writing dependency_links to ../../build/perception_pkg/perception_pkg.egg-info/dependency_links.txt
+[0.810s] writing entry points to ../../build/perception_pkg/perception_pkg.egg-info/entry_points.txt
+[0.810s] writing requirements to ../../build/perception_pkg/perception_pkg.egg-info/requires.txt
+[0.810s] writing top-level names to ../../build/perception_pkg/perception_pkg.egg-info/top_level.txt
+[0.810s] reading manifest file '../../build/perception_pkg/perception_pkg.egg-info/SOURCES.txt'
+[0.810s] writing manifest file '../../build/perception_pkg/perception_pkg.egg-info/SOURCES.txt'
+[0.811s] running build
+[0.811s] running build_py
+[0.811s] running install
+[0.811s] /usr/lib/python3/dist-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+[0.811s]   warnings.warn(
+[0.811s] running install_lib
+[0.811s] running install_data
+[0.812s] running install_egg_info
+[0.813s] removing '/home/bakerherrin/ROS2-Gesture-Detection/install/perception_pkg/lib/python3.10/site-packages/perception_pkg-0.1.0-py3.10.egg-info' (and everything under it)
+[0.813s] Copying ../../build/perception_pkg/perception_pkg.egg-info to /home/bakerherrin/ROS2-Gesture-Detection/install/perception_pkg/lib/python3.10/site-packages/perception_pkg-0.1.0-py3.10.egg-info
+[0.813s] running install_scripts
+[0.825s] Installing perception_node script to /home/bakerherrin/ROS2-Gesture-Detection/install/perception_pkg/lib/perception_pkg
+[0.825s] writing list of installed files to '/home/bakerherrin/ROS2-Gesture-Detection/build/perception_pkg/install.log'
+[0.845s] Invoked command in '/home/bakerherrin/ROS2-Gesture-Detection/src/perception_pkg' returned '0': CONDA_PROMPT_MODIFIER=(base) PYTHONPATH=/home/bakerherrin/ROS2-Gesture-Detection/build/perception_pkg/prefix_override:/home/bakerherrin/ROS2-Gesture-Detection/install/perception_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/perception_pkg build --build-base /home/bakerherrin/ROS2-Gesture-Detection/build/perception_pkg/build install --record /home/bakerherrin/ROS2-Gesture-Detection/build/perception_pkg/install.log --single-version-externally-managed

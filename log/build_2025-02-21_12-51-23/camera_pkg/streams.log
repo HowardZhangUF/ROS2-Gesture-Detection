@@ -1,0 +1,23 @@
+[0.469s] Invoking command in '/home/bakerherrin/ROS2-Gesture-Detection/src/camera_pkg': CONDA_PROMPT_MODIFIER=(base) PYTHONPATH=/home/bakerherrin/ROS2-Gesture-Detection/build/camera_pkg/prefix_override:/home/bakerherrin/ROS2-Gesture-Detection/install/camera_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/camera_pkg build --build-base /home/bakerherrin/ROS2-Gesture-Detection/build/camera_pkg/build install --record /home/bakerherrin/ROS2-Gesture-Detection/build/camera_pkg/install.log --single-version-externally-managed
+[0.606s] running egg_info
+[0.606s] writing ../../build/camera_pkg/camera_pkg.egg-info/PKG-INFO
+[0.606s] writing dependency_links to ../../build/camera_pkg/camera_pkg.egg-info/dependency_links.txt
+[0.606s] writing entry points to ../../build/camera_pkg/camera_pkg.egg-info/entry_points.txt
+[0.606s] writing requirements to ../../build/camera_pkg/camera_pkg.egg-info/requires.txt
+[0.606s] writing top-level names to ../../build/camera_pkg/camera_pkg.egg-info/top_level.txt
+[0.607s] reading manifest file '../../build/camera_pkg/camera_pkg.egg-info/SOURCES.txt'
+[0.608s] writing manifest file '../../build/camera_pkg/camera_pkg.egg-info/SOURCES.txt'
+[0.608s] running build
+[0.608s] running build_py
+[0.608s] running install
+[0.609s] /usr/lib/python3/dist-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+[0.609s]   warnings.warn(
+[0.609s] running install_lib
+[0.609s] running install_data
+[0.609s] running install_egg_info
+[0.610s] removing '/home/bakerherrin/ROS2-Gesture-Detection/install/camera_pkg/lib/python3.10/site-packages/camera_pkg-0.1.0-py3.10.egg-info' (and everything under it)
+[0.610s] Copying ../../build/camera_pkg/camera_pkg.egg-info to /home/bakerherrin/ROS2-Gesture-Detection/install/camera_pkg/lib/python3.10/site-packages/camera_pkg-0.1.0-py3.10.egg-info
+[0.611s] running install_scripts
+[0.624s] Installing camera_node script to /home/bakerherrin/ROS2-Gesture-Detection/install/camera_pkg/lib/camera_pkg
+[0.624s] writing list of installed files to '/home/bakerherrin/ROS2-Gesture-Detection/build/camera_pkg/install.log'
+[0.639s] Invoked command in '/home/bakerherrin/ROS2-Gesture-Detection/src/camera_pkg' returned '0': CONDA_PROMPT_MODIFIER=(base) PYTHONPATH=/home/bakerherrin/ROS2-Gesture-Detection/build/camera_pkg/prefix_override:/home/bakerherrin/ROS2-Gesture-Detection/install/camera_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/camera_pkg build --build-base /home/bakerherrin/ROS2-Gesture-Detection/build/camera_pkg/build install --record /home/bakerherrin/ROS2-Gesture-Detection/build/camera_pkg/install.log --single-version-externally-managed

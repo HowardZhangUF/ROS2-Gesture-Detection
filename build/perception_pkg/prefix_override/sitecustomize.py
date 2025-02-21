@@ -1,4 +1,3 @@
 import sys
-if sys.prefix == '/usr':
-    sys.real_prefix = sys.prefix
-    sys.prefix = sys.exec_prefix = '/home/user/my_rov_ws/install/perception_pkg'
+sys.real_prefix = sys.prefix
+sys.prefix = sys.exec_prefix = '/home/bakerherrin/ROS2-Gesture-Detection/install/perception_pkg'

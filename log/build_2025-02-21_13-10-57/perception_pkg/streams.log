@@ -1,0 +1,25 @@
+[0.722s] Invoking command in '/home/bakerherrin/ROS2-Gesture-Detection/build/perception_pkg': CONDA_PROMPT_MODIFIER=(base) PYTHONPATH=/home/bakerherrin/ROS2-Gesture-Detection/build/perception_pkg/prefix_override:/home/bakerherrin/ROS2-Gesture-Detection/install/perception_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /home/bakerherrin/ROS2-Gesture-Detection/build/perception_pkg/build --no-deps install_data
+[0.870s] running develop
+[0.870s] /usr/lib/python3/dist-packages/setuptools/command/easy_install.py:158: EasyInstallDeprecationWarning: easy_install command is deprecated. Use build and pip and other standards-based tools.
+[0.870s]   warnings.warn(
+[0.871s] /usr/lib/python3/dist-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+[0.871s]   warnings.warn(
+[0.907s] /usr/lib/python3/dist-packages/pkg_resources/__init__.py:116: PkgResourcesDeprecationWarning: 0.1.43ubuntu1 is an invalid version and will not be supported in a future release
+[0.907s]   warnings.warn(
+[0.974s] running egg_info
+[0.974s] writing perception_pkg.egg-info/PKG-INFO
+[0.974s] writing dependency_links to perception_pkg.egg-info/dependency_links.txt
+[0.974s] writing entry points to perception_pkg.egg-info/entry_points.txt
+[0.974s] writing requirements to perception_pkg.egg-info/requires.txt
+[0.974s] writing top-level names to perception_pkg.egg-info/top_level.txt
+[0.975s] reading manifest file 'perception_pkg.egg-info/SOURCES.txt'
+[0.975s] writing manifest file 'perception_pkg.egg-info/SOURCES.txt'
+[0.976s] running build_ext
+[0.976s] Creating /home/bakerherrin/ROS2-Gesture-Detection/install/perception_pkg/lib/python3.10/site-packages/perception-pkg.egg-link (link to .)
+[0.977s] Installing hand_gesture_collector script to /home/bakerherrin/ROS2-Gesture-Detection/install/perception_pkg/lib/perception_pkg
+[0.977s] Installing perception_node script to /home/bakerherrin/ROS2-Gesture-Detection/install/perception_pkg/lib/perception_pkg
+[0.977s] 
+[0.977s] Installed /home/bakerherrin/ROS2-Gesture-Detection/build/perception_pkg
+[0.977s] running install_data
+[0.977s] copying launch/perception_pkg.launch.py -> /home/bakerherrin/ROS2-Gesture-Detection/install/perception_pkg/share/perception_pkg/launch
+[1.001s] Invoked command in '/home/bakerherrin/ROS2-Gesture-Detection/build/perception_pkg' returned '0': CONDA_PROMPT_MODIFIER=(base) PYTHONPATH=/home/bakerherrin/ROS2-Gesture-Detection/build/perception_pkg/prefix_override:/home/bakerherrin/ROS2-Gesture-Detection/install/perception_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /home/bakerherrin/ROS2-Gesture-Detection/build/perception_pkg/build --no-deps install_data

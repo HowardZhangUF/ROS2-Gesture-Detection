@@ -1,0 +1,23 @@
+[0.460s] Invoking command in '/home/bakerherrin/ROS2-Gesture-Detection/build/camera_pkg': CONDA_PROMPT_MODIFIER=(base) PYTHONPATH=/home/bakerherrin/ROS2-Gesture-Detection/build/camera_pkg/prefix_override:/home/bakerherrin/ROS2-Gesture-Detection/install/camera_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /home/bakerherrin/ROS2-Gesture-Detection/build/camera_pkg/build --no-deps install_data
+[0.609s] running develop
+[0.610s] /usr/lib/python3/dist-packages/setuptools/command/easy_install.py:158: EasyInstallDeprecationWarning: easy_install command is deprecated. Use build and pip and other standards-based tools.
+[0.610s]   warnings.warn(
+[0.611s] /usr/lib/python3/dist-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+[0.611s]   warnings.warn(
+[0.649s] /usr/lib/python3/dist-packages/pkg_resources/__init__.py:116: PkgResourcesDeprecationWarning: 0.1.43ubuntu1 is an invalid version and will not be supported in a future release
+[0.649s]   warnings.warn(
+[0.724s] running egg_info
+[0.724s] writing camera_pkg.egg-info/PKG-INFO
+[0.724s] writing dependency_links to camera_pkg.egg-info/dependency_links.txt
+[0.724s] writing entry points to camera_pkg.egg-info/entry_points.txt
+[0.724s] writing requirements to camera_pkg.egg-info/requires.txt
+[0.724s] writing top-level names to camera_pkg.egg-info/top_level.txt
+[0.724s] reading manifest file 'camera_pkg.egg-info/SOURCES.txt'
+[0.726s] writing manifest file 'camera_pkg.egg-info/SOURCES.txt'
+[0.726s] running build_ext
+[0.726s] Creating /home/bakerherrin/ROS2-Gesture-Detection/install/camera_pkg/lib/python3.10/site-packages/camera-pkg.egg-link (link to .)
+[0.726s] Installing camera_node script to /home/bakerherrin/ROS2-Gesture-Detection/install/camera_pkg/lib/camera_pkg
+[0.727s] 
+[0.727s] Installed /home/bakerherrin/ROS2-Gesture-Detection/build/camera_pkg
+[0.727s] running install_data
+[0.745s] Invoked command in '/home/bakerherrin/ROS2-Gesture-Detection/build/camera_pkg' returned '0': CONDA_PROMPT_MODIFIER=(base) PYTHONPATH=/home/bakerherrin/ROS2-Gesture-Detection/build/camera_pkg/prefix_override:/home/bakerherrin/ROS2-Gesture-Detection/install/camera_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /home/bakerherrin/ROS2-Gesture-Detection/build/camera_pkg/build --no-deps install_data

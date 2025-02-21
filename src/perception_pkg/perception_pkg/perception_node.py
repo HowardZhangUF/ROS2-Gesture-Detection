@@ -24,7 +24,7 @@ class PerceptionNode(Node):
         
         self.image_sub = self.create_subscription(
             Image,
-            '/camera/image_raw',
+            '/rov/image_raw',
             self.image_callback,
             10
         )
@@ -33,7 +33,8 @@ class PerceptionNode(Node):
         self.image_pub = self.create_publisher(Image, '/perception/image_out', 10)
         self.action_pub = self.create_publisher(String, '/perception/action', 10)
         self.mode_pub   = self.create_publisher(String, '/perception/mode', 10)
-
+        self.frame = np.zeros(0)
+        self.ret = False
         
         self.bridge = CvBridge()
 
@@ -52,8 +53,10 @@ class PerceptionNode(Node):
         """
         try:
             frame = self.bridge.imgmsg_to_cv2(msg, 'bgr8')
+            self.ret = True
         except Exception as e:
             self.get_logger().error(f"Failed to convert image: {e}")
+            self.ret = False
             return
 
         

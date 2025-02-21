@@ -9,8 +9,12 @@ setup.py
 ../../build/visualization_pkg/visualization_pkg.egg-info/top_level.txt
 ../../build/visualization_pkg/visualization_pkg.egg-info/zip-safe
 resource/visualization_pkg
-test/test_copyright.py
-test/test_flake8.py
-test/test_pep257.py
 visualization_pkg/__init__.py
 visualization_pkg/visualization_node.py
+visualization_pkg.egg-info/PKG-INFO
+visualization_pkg.egg-info/SOURCES.txt
+visualization_pkg.egg-info/dependency_links.txt
+visualization_pkg.egg-info/entry_points.txt
+visualization_pkg.egg-info/requires.txt
+visualization_pkg.egg-info/top_level.txt
+visualization_pkg.egg-info/zip-safe

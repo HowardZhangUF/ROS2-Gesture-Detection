@@ -7,15 +7,15 @@ from launch_ros.actions import Node
 
 def generate_launch_description():
 
-    # 1) Camera node
-    camera_node = Node(
-        package='camera_pkg',           # The package name
-        executable='camera_node',       # The console_script name from setup.py
-        name='camera_node',
-        output='screen',
-        # If you have parameters for the camera_node, you can pass them here:
-        # parameters=[{'use_webcam': True, 'fps': 10}],
-    )
+    # # 1) Camera node
+    # camera_node = Node(
+    #     package='camera_pkg',           # The package name
+    #     executable='camera_node',       # The console_script name from setup.py
+    #     name='camera_node',
+    #     output='screen',
+    #     # If you have parameters for the camera_node, you can pass them here:
+    #     # parameters=[{'use_webcam': True, 'fps': 10}],
+    # )
 
     # 2) Perception node
     perception_node = Node(
@@ -35,7 +35,7 @@ def generate_launch_description():
 
     # Return the LaunchDescription with all 3 nodes
     return LaunchDescription([
-        camera_node,
+       #     camera_node,
         perception_node,
         visualization_node
     ])

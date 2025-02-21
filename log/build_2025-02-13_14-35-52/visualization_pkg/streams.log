@@ -1,0 +1,23 @@
+[0.697s] Invoking command in '/home/bakerherrin/ROS2-Gesture-Detection/src/visualization_pkg': CONDA_PROMPT_MODIFIER=(base) PYTHONPATH=/home/bakerherrin/ROS2-Gesture-Detection/build/visualization_pkg/prefix_override:/home/bakerherrin/ROS2-Gesture-Detection/install/visualization_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/visualization_pkg build --build-base /home/bakerherrin/ROS2-Gesture-Detection/build/visualization_pkg/build install --record /home/bakerherrin/ROS2-Gesture-Detection/build/visualization_pkg/install.log --single-version-externally-managed
+[0.830s] running egg_info
+[0.830s] writing ../../build/visualization_pkg/visualization_pkg.egg-info/PKG-INFO
+[0.831s] writing dependency_links to ../../build/visualization_pkg/visualization_pkg.egg-info/dependency_links.txt
+[0.831s] writing entry points to ../../build/visualization_pkg/visualization_pkg.egg-info/entry_points.txt
+[0.831s] writing requirements to ../../build/visualization_pkg/visualization_pkg.egg-info/requires.txt
+[0.831s] writing top-level names to ../../build/visualization_pkg/visualization_pkg.egg-info/top_level.txt
+[0.832s] reading manifest file '../../build/visualization_pkg/visualization_pkg.egg-info/SOURCES.txt'
+[0.832s] writing manifest file '../../build/visualization_pkg/visualization_pkg.egg-info/SOURCES.txt'
+[0.832s] running build
+[0.832s] running build_py
+[0.833s] running install
+[0.833s] running install_lib
+[0.833s] /usr/lib/python3/dist-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+[0.833s]   warnings.warn(
+[0.833s] running install_data
+[0.833s] running install_egg_info
+[0.834s] removing '/home/bakerherrin/ROS2-Gesture-Detection/install/visualization_pkg/lib/python3.10/site-packages/visualization_pkg-0.1.0-py3.10.egg-info' (and everything under it)
+[0.834s] Copying ../../build/visualization_pkg/visualization_pkg.egg-info to /home/bakerherrin/ROS2-Gesture-Detection/install/visualization_pkg/lib/python3.10/site-packages/visualization_pkg-0.1.0-py3.10.egg-info
+[0.835s] running install_scripts
+[0.847s] Installing visualization_node script to /home/bakerherrin/ROS2-Gesture-Detection/install/visualization_pkg/lib/visualization_pkg
+[0.847s] writing list of installed files to '/home/bakerherrin/ROS2-Gesture-Detection/build/visualization_pkg/install.log'
+[0.860s] Invoked command in '/home/bakerherrin/ROS2-Gesture-Detection/src/visualization_pkg' returned '0': CONDA_PROMPT_MODIFIER=(base) PYTHONPATH=/home/bakerherrin/ROS2-Gesture-Detection/build/visualization_pkg/prefix_override:/home/bakerherrin/ROS2-Gesture-Detection/install/visualization_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/visualization_pkg build --build-base /home/bakerherrin/ROS2-Gesture-Detection/build/visualization_pkg/build install --record /home/bakerherrin/ROS2-Gesture-Detection/build/visualization_pkg/install.log --single-version-externally-managed
