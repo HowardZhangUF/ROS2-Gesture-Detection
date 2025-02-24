@@ -1,1 +1,0 @@
-/home/bakerherrin/ROS2-Gesture-Detection/src/perception_pkg/setup.py

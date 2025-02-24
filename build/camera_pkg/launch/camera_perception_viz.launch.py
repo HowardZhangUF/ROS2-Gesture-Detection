@@ -1,1 +1,0 @@
-/home/bakerherrin/ROS2-Gesture-Detection/src/camera_pkg/launch/camera_perception_viz.launch.py

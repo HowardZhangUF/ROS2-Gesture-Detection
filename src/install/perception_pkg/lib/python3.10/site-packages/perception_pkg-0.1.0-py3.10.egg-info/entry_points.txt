@@ -1,4 +1,0 @@
-[console_scripts]
-hand_gesture_collector = perception_pkg.hand_gesture_collector:main
-perception_node = perception_pkg.perception_node:main
-
