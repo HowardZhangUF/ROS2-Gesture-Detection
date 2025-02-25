@@ -21,7 +21,6 @@ class PerceptionNode(Node):
     def __init__(self):
         super().__init__('perception_node')
 
-        
         self.image_sub = self.create_subscription(
             Image,
             '/rov/image_raw',
@@ -33,7 +32,7 @@ class PerceptionNode(Node):
         self.image_pub = self.create_publisher(Image, '/perception/image_out', 10)
         self.action_pub = self.create_publisher(String, '/perception/action', 10)
         self.mode_pub   = self.create_publisher(String, '/perception/mode', 10)
-        self.frame = np.zeros(0)
+        # self.frame = np.zeros(0)
         self.ret = False
         
         self.bridge = CvBridge()
