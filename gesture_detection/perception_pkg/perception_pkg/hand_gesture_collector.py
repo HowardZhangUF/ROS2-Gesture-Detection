@@ -6,25 +6,33 @@ import cv2
 import time
 import mediapipe as mp
 from sensor_msgs.msg import Image
+from std_msgs.msg import UInt8
 from cv_bridge import CvBridge
+from datetime import datetime
 class HandGestureCollector(Node):
     def __init__(self):
         super().__init__('hand_gesture_collector')
         self.get_logger().info("Initializing Hand Gesture Collector Node")
 
         # Define the base data path
-        self.DATA_PATH = os.path.join('MP_Data')
+        timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M")
+        self.DATA_PATH = os.path.join(f'{timestamp}_MP_Data')
 
         # Define the actions
-        self.actions = ['ASCEND', 'DESCEND', 'ME', 'STOP', 'ToRight', 'BUDDY UP', 'FOLLOW ME', 'OK', 'ToLeft', 'YOU', 'STAY']
+        self.actions = [ 'OK','ASCEND', 'DESCEND', 'YOU', 'ME', 'ToRight','ToLeft','BUDDY_UP', 'FOLLOW_ME', 'STAY', 'STOP']
         self.action_index = 0
 
         # Define parameters
         self.sequence_length = 30
-        self.no_sequences = 60
-        self.start_folder = 30
+        self.no_sequences = 30 # 60
+        self.start_folder = 1
         self.cam_sub = self.create_subscription(msg_type=Image,topic="image_raw",callback=self.image_callback,qos_profile=1)
-        self.collect_timer = self.create_timer(timer_period_sec=1/10,callback=self.collect_data)
+        self.collect_timer = self.create_timer(timer_period_sec=1/30,callback=self.collect_data)
+        self.light_pwm_pub = self.create_publisher(
+            msg_type = UInt8,
+            topic= f"rov/lights_b",
+            qos_profile = 1,
+        )
         self.br = CvBridge()
         
         # Ensure MP_Data directory exists
@@ -35,10 +43,10 @@ class HandGestureCollector(Node):
         self.hands = self.mp_hands.Hands(min_detection_confidence=0.5, min_tracking_confidence=0.5)
         self.mp_draw = mp.solutions.drawing_utils
 
-        self.frame =None 
-        self.ret = False
-        self.frame_num = 0
-        self.sequence_num = 0
+        self.frame = None 
+        self.ret = False    
+        self.frame_num = 1
+        self.sequence_num = 1
         
         self.setup_directories()
 
@@ -70,8 +78,10 @@ class HandGestureCollector(Node):
     def collect_data(self):
         if self.frame is None:
             return
+        light_msg = UInt8()
+        light_msg.data = int(10)
+        self.light_pwm_pub.publish(light_msg)
         action = self.actions[self.action_index]
-
         # for sequence in range(self.start_folder, self.start_folder + self.no_sequences):
         sequence = self.sequence_num
         # self.cap.grab()
@@ -99,16 +109,22 @@ class HandGestureCollector(Node):
         np.save(npy_path, keypoints)
         if cv2.waitKey(10) & 0xFF == ord('q'):
             return
-        if self.frame_num == self.sequence_length-1:
-            self.display_message("FINISHED COLLECTION", duration=3.0)
-            time.sleep(1)
+        self.frame_num+=1
+        if self.frame_num == self.sequence_length:
+            light_msg = UInt8()
+            light_msg.data = int(0)
+            self.light_pwm_pub.publish(light_msg)
+            self.display_message("FINISHED COLLECTION", duration=1)
+            time.sleep(0.5)
             self.sequence_num +=1
-            self.frame_num = 0
-        
+            self.frame_num = 1
         if self.sequence_num == (self.start_folder+self.no_sequences) -1:
             self.action_index+=1
-            self.sequence_num = 0
-            self.display_message(f"Switching to {action}", duration=5.0)
+            self.sequence_num = self.start_folder
+            light_msg = UInt8()
+            light_msg.data = int(0)
+            self.light_pwm_pub.publish(light_msg)
+            self.display_message(f"Switching to {self.actions[self.action_index]}", duration=7.0)
         if self.action_index == len(self.actions):
             self.display_message("✅ All Actions Collected!", duration=5.0)
             cv2.destroyAllWindows()
