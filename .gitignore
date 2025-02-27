@@ -1,7 +1,7 @@
 .vscode/
 __pycache__/
 *.pyc
-*MPData/
+*MP_Data/
 build/
 install/
 log/
