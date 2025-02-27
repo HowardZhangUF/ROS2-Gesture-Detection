@@ -7,7 +7,9 @@ import mediapipe as mp
 import cv2
 import numpy as np
 import mediapipe as mp
-from tensorflow.keras.models import load_model
+from tensorflow.keras.models import load_model 
+import tensorflow as tf
+from .LSTM_model import TransformerBlock
 
 # Mediapipe Tasks API
 from mediapipe.tasks import python
@@ -477,7 +479,7 @@ class rov:
 
     DEFAULT_CONTROL = "follow"
     DEFAULT_PERCEPTION = "obj_detection"
-    THRES_BBOX_RATIO = 0.6  # ratio threshold for switching to hand_recognition
+    THRES_BBOX_RATIO = 0.2  # ratio threshold for switching to hand_recognition
 
     def __init__(self, camera_id=0, action=None):
         self.launch_time = time.time()
@@ -502,11 +504,13 @@ class rov:
         self.hand_result = None
 
         self.action = action
+        print("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
+
 
         # Initialize models
-        perception_share_directory = get_package_share_directory("perception_pkg")
+        self.perception_share_directory = get_package_share_directory("perception_pkg")
         base_options = python.BaseOptions(
-            model_asset_path=f"{perception_share_directory}/models/efficientdet_lite0.tflite"
+            model_asset_path=f"{self.perception_share_directory}/models/efficientdet_lite0.tflite"
         )
         detector_options = vision.ObjectDetectorOptions(
             base_options=base_options,
@@ -517,7 +521,7 @@ class rov:
         self.obj_detector = vision.ObjectDetector.create_from_options(detector_options)
 
         base_options = python.BaseOptions(
-            model_asset_path=f"{perception_share_directory}/models/pose_landmarker_full.task"
+            model_asset_path=f"{self.perception_share_directory}/models/pose_landmarker_full.task"
         )
         pose_options = vision.PoseLandmarkerOptions(
             base_options=base_options,
@@ -527,7 +531,7 @@ class rov:
         self.pose_estimator = vision.PoseLandmarker.create_from_options(pose_options)
 
         base_options = python.BaseOptions(
-            model_asset_path=f"{perception_share_directory}/models/gesture_recognizer.task"
+            model_asset_path=f"{self.perception_share_directory}/models/gesture_recognizer.task"
         )
         gesture_options = vision.GestureRecognizerOptions(
             base_options=base_options,
@@ -691,7 +695,7 @@ class rov:
                 cv2.circle(frame, (int(cx), int(cy)), 6, green, thickness=-1)
         return frame
 
-    def run_transformer_for_actions(frame):
+    def run_transformer_for_actions(self, frame):
         """
         Processes the given frame, extracts keypoints, updates the sliding window,
         and predicts an action using the Transformer model.
@@ -704,7 +708,9 @@ class rov:
         global sequence
 
          # Load the trained Transformer model
-        model = load_model("action.h5")
+        custom_objects = {"TransformerBlock": TransformerBlock}
+        model = load_model(f'{self.perception_share_directory}/models/action.h5', custom_objects=custom_objects)
+        model.compile(optimizer='Adam', loss='categorical_crossentropy', metrics=['categorical_accuracy'])
 
         # Define actions from the Transformer model
         actions = np.array(['ASCEND', 'DESCEND', 'ME', 'STOP', 'ToRight', 'BUDDY UP', 
@@ -744,10 +750,13 @@ class rov:
         # Run prediction only when we have enough frames
         if len(sequence) == window_size:
             input_data = np.expand_dims(sequence, axis=0)  # Shape (1, 30, 126)
-            prediction = model.predict(input_data)[0]  # Probabilities
+            
+            with tf.device('/GPU:0'):
+                prediction = model.predict(input_data)[0]  # Probabilities
 
             # Get predicted action
             predicted_action = actions[np.argmax(prediction)]
+            print(predicted_action)
 
             # If action is STOP or ToRight, return corresponding ID
             if predicted_action in ACTION_MAP:
@@ -777,8 +786,8 @@ class rov:
         if self.obj_result:
             bbox_width = self.obj_result.width
             bbox_height = self.obj_result.height
-
-            if bbox_width > self.THRES_BBOX_RATIO * self.FRAME_WIDTH or bbox_height > self.THRES_BBOX_RATIO * self.FRAME_HEIGHT:
+            print(f"bbox_width  {bbox_width}, and ratio: {self.THRES_BBOX_RATIO * self.FRAME_WIDTH}\n if statement {bbox_width < self.THRES_BBOX_RATIO * self.FRAME_WIDTH or bbox_height < self.THRES_BBOX_RATIO * self.FRAME_HEIGHT}")
+            if bbox_width < self.THRES_BBOX_RATIO * self.FRAME_WIDTH or bbox_height < self.THRES_BBOX_RATIO * self.FRAME_HEIGHT:
                 # Small bounding box => Follow Mode (Obj Detection)
                 self.perception_mode = "obj_detection"
                 self.control_mode = "follow"
@@ -804,7 +813,7 @@ class rov:
                 self.control_mode = "turn"
 
                 # Run Transformer model
-                transformer_result = run_transformer_for_actions(self.current_frame)
+                transformer_result = self.run_transformer_for_actions(self.image_buffer)
 
                 if transformer_result == 2:
                     # STOP action detected
