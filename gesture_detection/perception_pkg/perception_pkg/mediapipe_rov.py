@@ -4,6 +4,10 @@ import math
 import time
 import numpy as np
 import mediapipe as mp
+import cv2
+import numpy as np
+import mediapipe as mp
+from tensorflow.keras.models import load_model
 
 # Mediapipe Tasks API
 from mediapipe.tasks import python
@@ -687,28 +691,99 @@ class rov:
                 cv2.circle(frame, (int(cx), int(cy)), 6, green, thickness=-1)
         return frame
 
+    def run_transformer_for_actions(frame):
+        """
+        Processes the given frame, extracts keypoints, updates the sliding window,
+        and predicts an action using the Transformer model.
+
+        Returns:
+            - 2 if the predicted action is "STOP"
+            - 3 if the predicted action is "ToRight"
+            - -1 if any other action is detected (ignored)
+        """
+        global sequence
+
+         # Load the trained Transformer model
+        model = load_model("action.h5")
+
+        # Define actions from the Transformer model
+        actions = np.array(['ASCEND', 'DESCEND', 'ME', 'STOP', 'ToRight', 'BUDDY UP', 
+                            'FOLLOW ME', 'OK', 'ToLeft', 'YOU', 'STAY'])
+
+        # Actions to use in update_task() - Only these two matter
+        ACTION_MAP = {"STOP": 2, "ToRight": 3}
+
+        # Initialize MediaPipe Holistic Model
+        holistic = mp.solutions.holistic
+        holistic = holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5)
+
+        # Sliding window for Transformer predictions
+        sequence = []
+        window_size = 30  # Must match training size
+
+        # Convert frame to RGB and process with MediaPipe
+        image_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        results = holistic.process(image_rgb)
+        ### Function 1: Extract Keypoints for Transformer ###
+        def extract_keypoints(results):
+            """
+            Extracts keypoints from hand landmarks detected by MediaPipe.
+            If no hand landmarks are found, returns an array of zeros.
+            """
+            lh = np.array([[res.x, res.y, res.z] for res in results.left_hand_landmarks.landmark]).flatten() if results.left_hand_landmarks else np.zeros(21 * 3)
+            rh = np.array([[res.x, res.y, res.z] for res in results.right_hand_landmarks.landmark]).flatten() if results.right_hand_landmarks else np.zeros(21 * 3)
+            return np.concatenate([lh, rh])
+
+        # Extract keypoints
+        keypoints = extract_keypoints(results)
+
+        # Update sliding window
+        sequence.append(keypoints)
+        sequence = sequence[-window_size:]  # Keep only last 30 frames
+
+        # Run prediction only when we have enough frames
+        if len(sequence) == window_size:
+            input_data = np.expand_dims(sequence, axis=0)  # Shape (1, 30, 126)
+            prediction = model.predict(input_data)[0]  # Probabilities
+
+            # Get predicted action
+            predicted_action = actions[np.argmax(prediction)]
+
+            # If action is STOP or ToRight, return corresponding ID
+            if predicted_action in ACTION_MAP:
+                return ACTION_MAP[predicted_action]
+
+        # If not enough frames or not relevant action, return -1 (ignore)
+        return -1
+
+
     def update_task(self):
         """
-        Logic: if the detected person's bounding box is big, assume they're close
-        enough to do hand recognition; otherwise, do object detection.
-        Returns an action string (or None).
+        Determines the appropriate action based on object detection (bounding box)
+        and Transformer model prediction (gesture recognition).
+        
+        Returns an action dictionary:
+            - action = 0 (search)
+            - action = 1 (follow)
+            - action = 2 (STOP) (from Transformer)
+            - action = 3 (ToRight) (from Transformer)
         """
         action_dict = {
             "bbox": (0, 0, 0, 0),
             "frame_size": (self.FRAME_WIDTH, self.FRAME_HEIGHT),
-            "action": 0,  # 0: search, 1: follow, 2: turn
-        }  # We'll store the result dictionary here
+            "action": 0  # Default: search mode
+        }
 
         if self.obj_result:
-            # 1) Check bounding box size
-            if self.obj_result.width < (
-                self.THRES_BBOX_RATIO * self.FRAME_WIDTH
-            ) or self.obj_result.height < (self.THRES_BBOX_RATIO * self.FRAME_HEIGHT):
-                # If bounding box is small => object detection mode
+            bbox_width = self.obj_result.width
+            bbox_height = self.obj_result.height
+
+            if bbox_width > self.THRES_BBOX_RATIO * self.FRAME_WIDTH or bbox_height > self.THRES_BBOX_RATIO * self.FRAME_HEIGHT:
+                # Small bounding box => Follow Mode (Obj Detection)
                 self.perception_mode = "obj_detection"
                 self.control_mode = "follow"
 
-                # Trigger "follow" action
+                # Call follow action
                 if self.action:
                     bbox = {
                         "x_min": self.obj_result.origin_x,
@@ -716,39 +791,48 @@ class rov:
                         "x_max": self.obj_result.origin_x + self.obj_result.width,
                         "y_max": self.obj_result.origin_y + self.obj_result.height,
                     }
-                    result = self.action.follow_diver_action(
-                        bbox, self.FRAME_WIDTH, self.FRAME_HEIGHT
-                    )
-                    print(result)  # Debug print
-                    action_dict["bbox"] = (
-                        self.obj_result.origin_x,
-                        self.obj_result.origin_y,
-                        self.obj_result.origin_x + self.obj_result.width,
-                        self.obj_result.origin_y + self.obj_result.height,
-                    )
-                    action_dict["action"] = 1  # Capture the return string/tuple
+                    result = self.action.follow_diver_action(bbox, self.FRAME_WIDTH, self.FRAME_HEIGHT)
+                    print(result)  # Debug output
+                    action_dict["bbox"] = (self.obj_result.origin_x, self.obj_result.origin_y, 
+                                        self.obj_result.origin_x + self.obj_result.width, 
+                                        self.obj_result.origin_y + self.obj_result.height)
+                    action_dict["action"] = 1  # Follow mode
+
             else:
-                # If bounding box is large => switch to hand recognition mode
+                # Large bounding box => Run Transformer for Hand Gestures
                 self.perception_mode = "hand_recognition"
                 self.control_mode = "turn"
 
-                # Trigger "turn" action
-                if self.action:
-                    result = self.action.turn_action(self)
-                    print(result)
+                # Run Transformer model
+                transformer_result = run_transformer_for_actions(self.current_frame)
+
+                if transformer_result == 2:
+                    # STOP action detected
                     action_dict["action"] = 2
-                    action_dict["bbox"] = (
-                        self.obj_result.origin_x,
-                        self.obj_result.origin_y,
-                        self.obj_result.origin_x + self.obj_result.width,
-                        self.obj_result.origin_y + self.obj_result.height,
-                    )
+                elif transformer_result == 3:
+                    # ToRight action detected
+                    action_dict["action"] = 3
+                else:
+                    # Do nothing (ignore other actions)
+                    pass
+
         else:
+            # No bounding box detected => Default to "search" mode
             self.perception_mode = "obj_detection"
             self.control_mode = "search"
             if self.action:
                 result = self.action.circle_action(self, increment=10)
                 print(result)
-                action_dict["action"] = 0
+                action_dict["action"] = 0  # Search mode
 
         return action_dict
+
+   
+
+    
+    
+    
+    
+
+    
+

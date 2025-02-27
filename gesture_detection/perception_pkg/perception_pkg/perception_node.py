@@ -35,7 +35,7 @@ class PerceptionNode(Node):
         self.bridge = CvBridge()
 
         rov_action = ROVAction()
-        self.bluerov = rov(camera_id=0, action=rov_action)
+        self.bluerov = rov(camera_id=1, action=rov_action)
 
         self.get_logger().info("Perception Node initialized.")
 
