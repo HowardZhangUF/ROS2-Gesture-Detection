@@ -26,6 +26,8 @@ setup(
         "console_scripts": [
             "perception_node = perception_pkg.perception_node:main",
             "hand_gesture_collector = perception_pkg.hand_gesture_collector:main",
+            "action_recognition_node = perception_pkg.action_recognition_node:main",
+            "action_recognition_hand_node = perception_pkg.action_recognition_hand_node:main",
         ],
     },
 )

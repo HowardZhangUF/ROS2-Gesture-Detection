@@ -1,5 +1,6 @@
 import cv2
 import os
+import psutil
 import math
 import time
 import numpy as np
@@ -479,7 +480,7 @@ class rov:
 
     DEFAULT_CONTROL = "follow"
     DEFAULT_PERCEPTION = "obj_detection"
-    THRES_BBOX_RATIO = 0.2  # ratio threshold for switching to hand_recognition
+    THRES_BBOX_RATIO = 0.8  # ratio threshold for switching to hand_recognition
 
     def __init__(self, camera_id=0, action=None):
         self.launch_time = time.time()
@@ -509,8 +510,9 @@ class rov:
 
         # Initialize models
         self.perception_share_directory = get_package_share_directory("perception_pkg")
+        print(self.perception_share_directory)
         base_options = python.BaseOptions(
-            model_asset_path=f"{self.perception_share_directory}/models/efficientdet_lite0.tflite"
+            model_asset_path=f"{self.perception_share_directory}/models/efficientdet_lite0.tflite",delegate = 0
         )
         detector_options = vision.ObjectDetectorOptions(
             base_options=base_options,
@@ -521,7 +523,7 @@ class rov:
         self.obj_detector = vision.ObjectDetector.create_from_options(detector_options)
 
         base_options = python.BaseOptions(
-            model_asset_path=f"{self.perception_share_directory}/models/pose_landmarker_full.task"
+            model_asset_path=f"{self.perception_share_directory}/models/pose_landmarker_full.task",delegate = 0
         )
         pose_options = vision.PoseLandmarkerOptions(
             base_options=base_options,
@@ -531,7 +533,7 @@ class rov:
         self.pose_estimator = vision.PoseLandmarker.create_from_options(pose_options)
 
         base_options = python.BaseOptions(
-            model_asset_path=f"{self.perception_share_directory}/models/gesture_recognizer.task"
+            model_asset_path=f"{self.perception_share_directory}/models/gesture_recognizer.task",delegate = 0
         )
         gesture_options = vision.GestureRecognizerOptions(
             base_options=base_options,
@@ -542,6 +544,11 @@ class rov:
         self.hand_recognizer = vision.GestureRecognizer.create_from_options(
             gesture_options
         )
+
+         # Load the trained Transformer model
+        custom_objects = {"TransformerBlock": TransformerBlock}
+        self.model = load_model(f'{self.perception_share_directory}/models/action.h5', custom_objects=custom_objects)
+        self.model.compile(optimizer='Adam', loss='categorical_crossentropy', metrics=['categorical_accuracy'])
 
     def turn_on_camera(self):
         self.cap = cv2.VideoCapture(self.camera_id)
@@ -705,66 +712,106 @@ class rov:
             - 3 if the predicted action is "ToRight"
             - -1 if any other action is detected (ignored)
         """
-        global sequence
-
-         # Load the trained Transformer model
-        custom_objects = {"TransformerBlock": TransformerBlock}
-        model = load_model(f'{self.perception_share_directory}/models/action.h5', custom_objects=custom_objects)
-        model.compile(optimizer='Adam', loss='categorical_crossentropy', metrics=['categorical_accuracy'])
-
-        # Define actions from the Transformer model
-        actions = np.array(['ASCEND', 'DESCEND', 'ME', 'STOP', 'ToRight', 'BUDDY UP', 
-                            'FOLLOW ME', 'OK', 'ToLeft', 'YOU', 'STAY'])
-
-        # Actions to use in update_task() - Only these two matter
-        ACTION_MAP = {"STOP": 2, "ToRight": 3}
-
-        # Initialize MediaPipe Holistic Model
-        holistic = mp.solutions.holistic
-        holistic = holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5)
-
-        # Sliding window for Transformer predictions
-        sequence = []
-        window_size = 30  # Must match training size
-
-        # Convert frame to RGB and process with MediaPipe
-        image_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        results = holistic.process(image_rgb)
-        ### Function 1: Extract Keypoints for Transformer ###
-        def extract_keypoints(results):
-            """
-            Extracts keypoints from hand landmarks detected by MediaPipe.
-            If no hand landmarks are found, returns an array of zeros.
-            """
-            lh = np.array([[res.x, res.y, res.z] for res in results.left_hand_landmarks.landmark]).flatten() if results.left_hand_landmarks else np.zeros(21 * 3)
-            rh = np.array([[res.x, res.y, res.z] for res in results.right_hand_landmarks.landmark]).flatten() if results.right_hand_landmarks else np.zeros(21 * 3)
-            return np.concatenate([lh, rh])
-
-        # Extract keypoints
-        keypoints = extract_keypoints(results)
-
-        # Update sliding window
-        sequence.append(keypoints)
-        sequence = sequence[-window_size:]  # Keep only last 30 frames
-
-        # Run prediction only when we have enough frames
-        if len(sequence) == window_size:
-            input_data = np.expand_dims(sequence, axis=0)  # Shape (1, 30, 126)
+        # Store sequence as instance variable instead of global
+        if not hasattr(self, 'action_sequence'):
+            self.action_sequence = []
+        
+        try:
+            # 1. Resize frame to reduce memory usage
+            small_frame = cv2.resize(frame, (100, 100))
             
-            with tf.device('/GPU:0'):
-                prediction = model.predict(input_data)[0]  # Probabilities
+            # 2. Define actions mapping
+            actions = np.array(['ASCEND', 'DESCEND', 'ME', 'STOP', 'ToRight', 'BUDDY UP', 
+                              'FOLLOW ME', 'OK', 'ToLeft', 'YOU', 'STAY'])
+            
+            ACTION_MAP = {"STOP": 2, "ToRight": 3, "ToLeft": 4, "FOLLOW ME": 5, "BUDDY UP": 6, 
+                        "OK": 7, "YOU": 8, "ME":9, "ASCEND":10, "DESCEND":11}
 
-            # Get predicted action
-            predicted_action = actions[np.argmax(prediction)]
-            print(predicted_action)
-
-            # If action is STOP or ToRight, return corresponding ID
-            if predicted_action in ACTION_MAP:
-                return ACTION_MAP[predicted_action]
-
-        # If not enough frames or not relevant action, return -1 (ignore)
+            # 3. Initialize MediaPipe Holistic only once
+            holistic = mp.solutions.holistic.Holistic(
+                min_detection_confidence=0.5, 
+                min_tracking_confidence=0.5,
+                static_image_mode=True  # Use static mode for memory efficiency
+            )
+            
+            # 4. Convert frame to RGB and process with MediaPipe
+            # Free up memory immediately after use
+            image_rgb = cv2.cvtColor(small_frame, cv2.COLOR_BGR2RGB)
+            results = holistic.process(image_rgb)
+            # Release memory
+            del image_rgb
+            
+            # 5. Define keypoint extraction function
+            def extract_keypoints(results):
+                lh = np.zeros(21*3)
+                if results.left_hand_landmarks:
+                    lh = np.array([[res.x, res.y, res.z] for res in 
+                                   results.left_hand_landmarks.landmark]).flatten()
+                
+                rh = np.zeros(21*3)
+                if results.right_hand_landmarks:
+                    rh = np.array([[res.x, res.y, res.z] for res in 
+                                   results.right_hand_landmarks.landmark]).flatten()
+                    
+                return np.concatenate([lh, rh])
+            
+            # 6. Extract keypoints
+            keypoints = extract_keypoints(results)
+            
+            # 7. Close MediaPipe resources explicitly
+            holistic.close()
+            
+            # 8. Update sequence
+            window_size = 30
+            self.action_sequence.append(keypoints)
+            self.action_sequence = self.action_sequence[-window_size:]
+            
+            # 9. Check if we have enough frames
+            if len(self.action_sequence) < window_size:
+                return -1
+                
+            # 10. Prepare input data (proper shape check)
+            input_data = tf.convert_to_tensor(np.array(self.action_sequence), dtype=tf.float32)
+            input_data = tf.expand_dims(input_data, axis=0)
+            # 11. Run prediction with explicit memory management
+            try:
+                # Force garbage collection before prediction
+                import gc
+                gc.collect()
+                
+                # Run on CPU explicitly with minimal verbosity
+                with tf.device('/GPU:0'):
+                    prediction = self.model.predict(
+                        input_data,
+                        verbose=0,
+                        batch_size=1,  # Force batch size of 1
+                    )[0]
+                
+                # 12. Get predicted action
+                action_index = np.argmax(prediction)
+                predicted_action = actions[action_index]
+                print(f"Predicted: {predicted_action} ({prediction[action_index]:.2f})")
+                
+                # 13. Force cleanup
+                del input_data
+                gc.collect()
+                
+                # 14. Return mapped action
+                if predicted_action in ACTION_MAP:
+                    return ACTION_MAP[predicted_action]
+                    
+            except Exception as e:
+                print(f"Prediction error: {str(e)}")
+                import traceback
+                traceback.print_exc()
+                
+        except Exception as e:
+            print(f"Transformer processing error: {str(e)}")
+            import traceback
+            traceback.print_exc()
+            
+        # Return -1 if anything fails
         return -1
-
 
     def update_task(self):
         """
@@ -774,8 +821,8 @@ class rov:
         Returns an action dictionary:
             - action = 0 (search)
             - action = 1 (follow)
-            - action = 2 (STOP) (from Transformer)
-            - action = 3 (ToRight) (from Transformer)
+            - action = 2 (stop)
+            - action = 3 (Gesture Recognition:)
         """
         action_dict = {
             "bbox": (0, 0, 0, 0),
@@ -787,43 +834,31 @@ class rov:
             bbox_width = self.obj_result.width
             bbox_height = self.obj_result.height
             print(f"bbox_width  {bbox_width}, and ratio: {self.THRES_BBOX_RATIO * self.FRAME_WIDTH}\n if statement {bbox_width < self.THRES_BBOX_RATIO * self.FRAME_WIDTH or bbox_height < self.THRES_BBOX_RATIO * self.FRAME_HEIGHT}")
-            if bbox_width < self.THRES_BBOX_RATIO * self.FRAME_WIDTH or bbox_height < self.THRES_BBOX_RATIO * self.FRAME_HEIGHT:
-                # Small bounding box => Follow Mode (Obj Detection)
-                self.perception_mode = "obj_detection"
-                self.control_mode = "follow"
+            # if bbox_width < self.THRES_BBOX_RATIO * self.FRAME_WIDTH or bbox_height < self.THRES_BBOX_RATIO * self.FRAME_HEIGHT:
+            # Small bounding box => Follow Mode (Obj Detection)
+            self.perception_mode = "obj_detection"
+            self.control_mode = "follow"
 
-                # Call follow action
-                if self.action:
-                    bbox = {
-                        "x_min": self.obj_result.origin_x,
-                        "y_min": self.obj_result.origin_y,
-                        "x_max": self.obj_result.origin_x + self.obj_result.width,
-                        "y_max": self.obj_result.origin_y + self.obj_result.height,
-                    }
-                    result = self.action.follow_diver_action(bbox, self.FRAME_WIDTH, self.FRAME_HEIGHT)
-                    print(result)  # Debug output
-                    action_dict["bbox"] = (self.obj_result.origin_x, self.obj_result.origin_y, 
-                                        self.obj_result.origin_x + self.obj_result.width, 
-                                        self.obj_result.origin_y + self.obj_result.height)
-                    action_dict["action"] = 1  # Follow mode
+            # Call follow action
+            if self.action:
+                bbox = {
+                    "x_min": self.obj_result.origin_x,
+                    "y_min": self.obj_result.origin_y,
+                    "x_max": self.obj_result.origin_x + self.obj_result.width,
+                    "y_max": self.obj_result.origin_y + self.obj_result.height,
+                }
+                result = self.action.follow_diver_action(bbox, self.FRAME_WIDTH, self.FRAME_HEIGHT)
+                print(result)  # Debug output
+                action_dict["bbox"] = (self.obj_result.origin_x, self.obj_result.origin_y, 
+                                    self.obj_result.origin_x + self.obj_result.width, 
+                                    self.obj_result.origin_y + self.obj_result.height)
+                action_dict["action"] = 1  # Follow mode
+                # if bbox_width > self.THRES_BBOX_RATIO * self.FRAME_WIDTH or bbox_height > self.THRES_BBOX_RATIO * self.FRAME_HEIGHT:
+                #     action_dict["action"] = 3
 
-            else:
-                # Large bounding box => Run Transformer for Hand Gestures
-                self.perception_mode = "hand_recognition"
-                self.control_mode = "turn"
 
-                # Run Transformer model
-                transformer_result = self.run_transformer_for_actions(self.image_buffer)
 
-                if transformer_result == 2:
-                    # STOP action detected
-                    action_dict["action"] = 2
-                elif transformer_result == 3:
-                    # ToRight action detected
-                    action_dict["action"] = 3
-                else:
-                    # Do nothing (ignore other actions)
-                    pass
+                    
 
         else:
             # No bounding box detected => Default to "search" mode
@@ -836,12 +871,12 @@ class rov:
 
         return action_dict
 
-   
 
-    
-    
-    
-    
 
-    
+
+
+
+
+
+
 

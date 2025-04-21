@@ -20,13 +20,18 @@ def generate_launch_description():
     # )
 
     # 2) Perception node
+    # perception_node = Node(
+    #     package='perception_pkg',
+    #     executable='perception_node',
+    #     name='perception_node',
+    #     output='screen'
+    # )
     perception_node = Node(
         package='perception_pkg',
-        executable='perception_node',
-        name='perception_node',
+        executable='hand_gesture_collector',
+        name='hand_gesture_collector',
         output='screen'
     )
-    
     # 3) Visualization node
     visualization_node = Node(
         package='visualization_pkg',

@@ -22,6 +22,7 @@ setup(
     entry_points={
         'console_scripts': [
             'visualization_node = visualization_pkg.visualization_node:main',
+            'ros2node_collect = visualization_pkg.ros2node_collect:main'
         ],
     },
 )
